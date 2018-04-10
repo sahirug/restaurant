@@ -12,7 +12,7 @@
 */
 
 // Route::get('/', function () {
-//     return view('login');
+    
 // });
 
 
@@ -35,10 +35,14 @@ Route::middleware('auth')->group(function(){
 
     Route::group(['middleware' => 'App\Http\Middleware\RootMiddleware'], function(){
         Route::get('/root/home', 'ContentController@showHome')->name('root_home');
+        Route::get('/add/branch', 'BranchController@showAddBranchForm')->name('add_branch');
+        Route::get('/branches', 'BranchController@show')->name('view_branch');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function(){
         Route::get('/manager/home', 'ContentController@showHome')->name('manager_home');
+        Route::get('/add/employee', 'EmployeeController@add')->name('add_employee');
+        Route::get('/view/reports', 'ReportController@view')->name('view_reports');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\CashierMiddleware'], function(){

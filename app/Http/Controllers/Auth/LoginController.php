@@ -57,25 +57,25 @@ class LoginController extends Controller
 
         if ( $job == 'Root' ) {
             $sidebar_items = [
-                0 => ['Home', 'fa fa-home'],
-                1 => ['Add Branch', 'fa fa-plus'],
-                2 => ['View Branches', 'fa fa-building'] 
+                0 => ['Home', 'fa fa-home', 'root_home'],
+                1 => ['Add Branch', 'fa fa-plus', 'add_branch'],
+                2 => ['View Branches', 'fa fa-building', 'view_branch'] 
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('root_home');
         }else if( $job == 'Manager' ) {
             $sidebar_items = [
-                0 => ['Home', 'fa fa-home'],
-                1 => ['Add Employee', 'fa fa-plus'], 
-                2 => ['View Reports', 'fa fa-file'] 
+                0 => ['Home', 'fa fa-home', 'manager_home'],
+                1 => ['Add Employee', 'fa fa-plus', 'add_employee'], 
+                2 => ['View Reports', 'fa fa-file', 'view_reports'] 
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('manager_home');
         }else if( $job == 'StockMgr' ) {
             $sidebar_items = [
-                0 => ['Home', 'fa fa-home'],
-                1 => ['Add Branch', 'fa fa-plus'], 
-                2 => ['View Branches', 'fa fa-building'] 
+                0 => ['Home', 'fa fa-home', 'stockmgr_home'],
+                1 => ['Resupply', 'fa fa-plus', 'resupply'], 
+                2 => ['Use stock', 'fa fa-building', 'use_stock'] 
             ];
             return redirect()->route('stockmgr_home');
         }else if( $job == 'Cashier' ) {

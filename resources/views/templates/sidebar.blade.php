@@ -33,9 +33,9 @@
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
             @foreach(session('sidebar_items') as $item)
-                <li class="active"><a href="#"><i class="{{ $item[1] }}"></i> <span>{{ $item[0] }}</span></a></li>
+                <li class="{{ $active == $item[2] ? 'active' : '' }}"><a href="{{ route($item[2]) }}"><i class="{{ $item[1] }}"></i> <span>{{ $item[0] }}</span></a></li>
             @endforeach
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+            {{-- <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -47,7 +47,7 @@
                     <li><a href="#">Link in level 2</a></li>
                     <li><a href="#">Link in level 2</a></li>
                 </ul>
-            </li>
+            </li> --}}
         </ul>
         <!-- /.sidebar-menu -->
     </section>

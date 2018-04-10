@@ -9,6 +9,8 @@ class ContentController extends Controller
 
     public function showHome(){
         $data['title'] = 'Home';
+        $data['header'] = 'Dashboard';
+        $data['active'] = lcfirst(session('job')) . '_home';
         switch(session('job')){
             case 'Root':
                 return view('root.home', $data);

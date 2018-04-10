@@ -51,10 +51,34 @@ class LoginController extends Controller
         $request->session()->put('employee_id', $employee_id);
         $request->session()->put('id', $id);
         $request->session()->put('name', $name);
+        $sidebar_items = [];
+
         if ( $job == 'Root' ) {
-            return redirect()->route('home');
+            $sidebar_items = [
+                0 => ['Add Branch', 'fa fa-plus'], 
+                1 => ['View Branches', 'fa fa-building'] 
+            ];
+            $request->session()->put('sidebar_items', $sidebar_items);
+            return redirect()->route('root_home');
         }else if( $job == 'Manager' ) {
-            return redirect()->route('home');
+            $sidebar_items = [
+                0 => ['Add Employee', 'fa fa-plus'], 
+                1 => ['View Reports', 'fa fa-file'] 
+            ];
+            $request->session()->put('sidebar_items', $sidebar_items);
+            return redirect()->route('manager_home');
+        }else if( $job == 'StockMgr' ) {
+            $sidebar_items = [
+                0 => ['Add Branch', 'fa fa-plus'], 
+                1 => ['View Branches', 'fa fa-building'] 
+            ];
+            return redirect()->route('stockmgr_home');
+        }else if( $job == 'Cashier' ) {
+            $sidebar_items = [
+                0 => ['Add Branch', 'fa fa-plus'], 
+                1 => ['View Branches', 'fa fa-building'] 
+            ];
+            return redirect()->route('cashier_home');
         }
     }
 }

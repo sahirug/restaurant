@@ -55,6 +55,9 @@ Route::get('/forbidden', function(){
     return view('403');
 })->name('403');
 
+Route::get('/test', function(){
+    return view('test');
+});
 
 // Auth::routes();
 

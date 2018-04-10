@@ -75,6 +75,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="branch" class="col-md-4 col-form-label text-md-right">Branch</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="branch_id" id="branch_id" class="form-control">
+                                @if ($errors->has('branch_id'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

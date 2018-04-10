@@ -18,7 +18,9 @@ class CreateEmployeesTable extends Migration
             $table->string('employee_id')->unique();
             $table->string('name');
             $table->string('password');
-            $table->string('job');            
+            $table->string('job');
+            $table->string('branch_id');
+            $table->foreign('branch_id')->references('branch_id')->on('branches')->onDelete('cascade');          
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,6 +33,7 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('employees');
     }
 }

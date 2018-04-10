@@ -15,7 +15,7 @@ class Employee extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'password', 'employee_id', 'job'
+        'name', 'password', 'employee_id', 'job', 'branch_id'
     ];
 
     /**
@@ -26,4 +26,12 @@ class Employee extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function branch(){
+        return $this->belongsTo('App\Branch');
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Order');
+    }
 }

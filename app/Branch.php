@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
 {
+
+    protected $primaryKey = 'branch_id';
+    public $incrementing = false;
+
     public function employees(){
         return $this->hasMany('App\Employee');
     }
@@ -24,5 +28,9 @@ class Branch extends Model
 
     public function inhouseOrders(){
         return $this->hasMany('App\InhouseOrder');
+    }
+
+    public function manager(){
+        return $this->belongsTo('App\Employee');
     }
 }

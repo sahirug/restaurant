@@ -35,8 +35,9 @@ Route::middleware('auth')->group(function(){
 
     Route::group(['middleware' => 'App\Http\Middleware\RootMiddleware'], function(){
         Route::get('/root/home', 'ContentController@showHome')->name('root_home');
-        Route::get('/add/branch', 'BranchController@showAddBranchForm')->name('add_branch');
-        Route::get('/branches', 'BranchController@show')->name('view_branch');
+        Route::get('/add/branch', 'BranchController@showAddBranchForm')->name('add_branch_form');
+        Route::post('/add/branch', 'BranchController@add')->name('add_branch');
+        Route::get('/branches', 'BranchController@show')->name('view_branches');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function(){
@@ -61,6 +62,10 @@ Route::get('/forbidden', function(){
 
 Route::get('/test', function(){
     return view('test');
+});
+
+Route::get('/test2', function(){
+    return view('modal_test');
 });
 
 // Auth::routes();

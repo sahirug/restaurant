@@ -13,8 +13,7 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
-            $table->increments('id');            
+        Schema::create('employees', function (Blueprint $table) {     
             $table->string('employee_id')->unique();
             $table->string('name');
             $table->string('password');
@@ -23,6 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->foreign('branch_id')->references('branch_id')->on('branches')->onDelete('cascade');          
             $table->rememberToken();
             $table->timestamps();
+            $table->primary('employee_id');
         });
     }
 

@@ -65,7 +65,7 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                {{ $header }}
+                {{ isset($header) ? $header : '' }}
                 <small>{{ isset($desc) ? $desc : '' }}</small>
             </h1>
             <ol class="breadcrumb">
@@ -104,7 +104,7 @@ desired effect
                             <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
                             <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                <h4 class="control-sidebar-subheading">Langdons Birthday</h4>
 
                                 <p>Will be 23 on April 24th</p>
                             </div>
@@ -154,12 +154,19 @@ desired effect
                     </div>
                     <!-- /.form-group -->
                 </form>
+
+
+
+                
+
+
+
             </div>
             <!-- /.tab-pane -->
         </div>
     </aside>
     <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
+    <!-- Add the sidebars background. This div must be placed
     immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
@@ -173,6 +180,9 @@ desired effect
 <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+
+
+    
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -14,7 +14,6 @@ class CreateInhouseOrdersTable extends Migration
     public function up()
     {
         Schema::create('inhouse_orders', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('order_id')->unique();
             $table->date('order_date');
             $table->decimal('tot_cost', 8, 2);
@@ -25,6 +24,7 @@ class CreateInhouseOrdersTable extends Migration
             $table->string('branch_id');
             $table->foreign('branch_id')->references('branch_id')->on('branches')->onDelete('cascade');
             $table->timestamps();
+            $table->primary(['order_id', 'branch_id']);
         });
     }
 

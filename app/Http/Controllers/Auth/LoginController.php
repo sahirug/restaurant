@@ -45,12 +45,10 @@ class LoginController extends Controller
     public function authenticated(Request $request, $user){
         $job = $user->toArray()['job'];
         $employee_id = $user->toArray()['employee_id'];
-        $id = $user->toArray()['id'];
         $name = $user->toArray()['name'];
         $branch_id = $user->toArray()['branch_id'];
         $request->session()->put('job', $job);
         $request->session()->put('employee_id', $employee_id);
-        $request->session()->put('id', $id);
         $request->session()->put('name', $name);
         $request->session()->put('branch_id', $branch_id);
         $sidebar_items = [];
@@ -58,8 +56,8 @@ class LoginController extends Controller
         if ( $job == 'Root' ) {
             $sidebar_items = [
                 0 => ['Home', 'fa fa-home', 'root_home'],
-                1 => ['Add Branch', 'fa fa-plus', 'add_branch'],
-                2 => ['View Branches', 'fa fa-building', 'view_branch'] 
+                1 => ['Add Branch', 'fa fa-plus', 'add_branch_form'],
+                2 => ['View Branches', 'fa fa-building', 'view_branches'] 
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('root_home');

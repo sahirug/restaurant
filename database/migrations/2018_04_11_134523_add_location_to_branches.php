@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBranchesTable extends Migration
+class AddLocationToBranches extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateBranchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('branches', function (Blueprint $table) {
-            $table->string('branch_id')->unique();
-            $table->timestamps();
-            $table->primary('branch_id');
+        Schema::table('branches', function (Blueprint $table) {
+            $table->string('location');
         });
     }
 
@@ -27,7 +25,6 @@ class CreateBranchesTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('branches');
+        //
     }
 }

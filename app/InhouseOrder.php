@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class InhouseOrder extends Model
 {
+    protected $primaryKey = ['order_id', 'branch_id'];
+    public $incrementing = false;
+
     public function meals(){
         return $this->belongsToMany('App\Meal')->withPivot('qty');
     }

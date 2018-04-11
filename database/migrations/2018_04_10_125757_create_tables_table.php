@@ -14,11 +14,11 @@ class CreateTablesTable extends Migration
     public function up()
     {
         Schema::create('tables', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('table_id')->unique();
             $table->string('branch_id');
             $table->foreign('branch_id')->references('branch_id')->on('branches')->onDelete('cascade');            
             $table->timestamps();
+            $table->primary(['table_id', 'branch_id']);
         });
     }
 

@@ -22,6 +22,7 @@
             </div><!-- /.box-footer-->
         </div><!-- /.box -->
     </div><!-- /.col -->
+    {{--  <button type="button" id="modal_launch" onclick="myFunc()" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" style="display: block">Launch!</button>  --}}
 
 </div><!-- /.row -->
 @endsection

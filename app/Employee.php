@@ -9,6 +9,9 @@ class Employee extends Authenticatable
 {
     use Notifiable;
 
+    protected $primaryKey = 'employee_id';
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *

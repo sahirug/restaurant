@@ -14,12 +14,12 @@ class CreateMealsTable extends Migration
     public function up()
     {
         Schema::create('meals', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('meal_id')->unique();
             $table->decimal('unit_price', 8, 2);
             $table->string('branch_id');
             $table->foreign('branch_id')->references('branch_id')->on('branches')->onDelete('cascade');
             $table->timestamps();
+            $table->primary(['meal_id', 'branch_id']);
         });
     }
 

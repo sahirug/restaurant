@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function(){
         Route::get('/add/branch', 'BranchController@showAddBranchForm')->name('add_branch_form');
         Route::post('/add/branch', 'BranchController@add')->name('add_branch');
         Route::get('/branches', 'BranchController@show')->name('view_branches');
+        Route::get('/branch/{branch_id}/add/manager', 'EmployeeController@addManagerForm')->name('show_add_manager_form');
+        Route::get('/branch/{branch_id}/add/manager/{employee_id}', 'EmployeeController@addManager')->name('add_manager');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function(){

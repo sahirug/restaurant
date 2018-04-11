@@ -15,7 +15,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <table id="example2" class="table table-bordered table-hover">
+            <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Branch Identifier</th>
@@ -25,29 +25,31 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($branches as $branch)
-                        <tr>
-                            <td>{{ $branch['branch_id'] }}</td>
-                            <td>{{ $branch['location'] }}</td>
-                            <td>
-                                @if(isset($branch['manager']))
-                                    {{ $branch['manager'] }}
-                                @else
-                                    <a href="#">Add Manager</a>    
-                                @endif
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    {{--  <button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>  --}}
-                                    <button type="button" class="btn btn-info" id="modal_launch" data-toggle="modal" data-target="#modal-info-{{ $branch['branch_id'] }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button type="button" class="btn btn-danger" id="modal_launch" data-toggle="modal" data-target="#modal-danger-{{ $branch['branch_id'] }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        </a>
-                    @endforeach
+                    @if(isset($branches))
+                        @foreach($branches as $branch)
+                            <tr>
+                                <td>{{ $branch['branch_id'] }}</td>
+                                <td>{{ $branch['location'] }}</td>
+                                <td>
+                                    @if(isset($branch['manager']))
+                                        {{ $branch['manager'] }}
+                                    @else
+                                        <a href="{{ route('show_add_manager_form', ['branch_id' => $branch['branch_id']]) }}">Add Manager</a>    
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        {{--  <button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>  --}}
+                                        <button type="button" class="btn btn-info" id="modal_launch" data-toggle="modal" data-target="#modal-info-{{ $branch['branch_id'] }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-danger" id="modal_launch" data-toggle="modal" data-target="#modal-danger-{{ $branch['branch_id'] }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </a>
+                        @endforeach
+                    @endif
                 </tbody>
-              </table>
+            </table>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -68,64 +70,73 @@
     function initAutocomplete(){
         console.log(document.getElementById('map'));
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 6.870066, lng: 79.879710},
-            zoom: 15
+            center: {lat: 7.860388, lng: 80.720494},
+            zoom: 7.4
         });
-        var marker = new google.maps.Marker({
-            position: {
-                lat: 6.870066,
-                lng: 79.879710
-            },
-            map: map,
-            draggable: true
-        });
+        var branches = [];
+        @if(isset($branches))
+            @foreach($branches as $branch)
+                branches.push(
+                    [
+                        new google.maps.LatLng({{ $branch['lat'] . ',' . $branch['lng'] }})
+                    ]
+                );
+            @endforeach
+            for(i = 0; i < branches.length; i++){
+                var marker = new google.maps.Marker({
+                    position: branches[i][0],
+                    map:map
+                });
+            }
+        @endif
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnj8jGhVej9jbk3qtyVPGlJppYy-Si8dc&libraries=places&callback=initAutocomplete"
             async defer></script>
-            @foreach($branches as $branch)
-                <div class="modal modal-danger fade" id="modal-danger-{{ $branch->branch_id }}">
-                    <div class="modal-dialog"  style="width: 25%">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title">Delete branch</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure you want to delete the branch at {{ $branch->location }} ?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a class="btn btn-outline pull-left" data-dismiss="modal" href="{{ route('add_branch_form') }}">Cancel</a>
-                                <a class="btn btn-outline" href="{{ route('add_branch_form') }}">Yes</a>
-                            </div>
-                        </div>
-                    <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <div class="modal modal-info fade" id="modal-info-{{ $branch->branch_id }}">
+            @if(isset($branches))
+                @foreach($branches as $branch)
+                    <div class="modal modal-danger fade" id="modal-danger-{{ $branch['branch_id'] }}">
                         <div class="modal-dialog"  style="width: 25%">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title">Delete branch</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title">Delete branch</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete the branch at {{ $branch['location'] }} ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-outline pull-left" data-dismiss="modal" href="{{ route('add_branch_form') }}">Cancel</a>
+                                    <a class="btn btn-outline" href="{{ route('add_branch_form') }}">Yes</a>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <p>Are you sure you want to delete the branch at {{ $branch->location }} ?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a class="btn btn-outline pull-left" data-dismiss="modal" href="{{ route('add_branch_form') }}">Cancel</a>
-                                <a class="btn btn-outline" href="{{ route('add_branch_form') }}">Yes</a>
-                            </div>
-                        </div>
                         <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
                     </div>
-                    <!-- /.modal-dialog -->
-                </div>
-            @endforeach
-
+                    <div class="modal modal-info fade" id="modal-info-{{ $branch->branch_id }}">
+                            <div class="modal-dialog"  style="width: 25%">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title">Delete branch</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete the branch at {{ $branch->location }} ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-outline pull-left" data-dismiss="modal" href="{{ route('add_branch_form') }}">Cancel</a>
+                                    <a class="btn btn-outline" href="{{ route('add_branch_form') }}">Yes</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                @endforeach
+            @endif
 @endsection

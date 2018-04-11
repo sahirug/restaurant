@@ -34,7 +34,7 @@ class BranchController extends Controller
         $branch->lng = $request['lng'];
         $branch->location = $request['location'];
         $branch->save();
-        return redirect()->route('add_branch_form');
+        return redirect()->route('view_branches');
     }
 
     public function show(){
@@ -46,20 +46,23 @@ class BranchController extends Controller
         $i = 0;
         foreach($branches as $branch){
             $manager = DB::table('employees')
-            ->join('branches', 'employees.branch_id', '=', 'branches.branch_id')
-            ->select('employees.name')
-            ->where('employees.job', '=', 'Manager')
-            ->where('employees.branch_id', '=', $branch->branch_id)
-            ->get();
+                ->join('branches', 'employees.branch_id', '=', 'branches.branch_id')
+                ->select('employees.name', 'employees.employee_id')
+                ->where('employees.job', '=', 'Manager')
+                ->where('employees.branch_id', '=', $branch->branch_id)
+                ->get();
             $name = $manager->toArray();
             $data['branches'][$i]['branch_id'] = $branch->branch_id;
             $data['branches'][$i]['lat'] = $branch->lat;
             $data['branches'][$i]['lng'] = $branch->lng;
             $data['branches'][$i]['location'] = $branch->location;
-            if(sizeof($manager->toArray()) > 0)
+            if(sizeof($manager->toArray()) > 0){
                 $data['branches'][$i]['manager'] = $manager->toArray()[0]->name;
-            else
+                $data['branches'][$i]['manager_id'] = $manager->toArray()[0]->employee_id;
+            }else{
                 $data['branches'][$i]['manager'] = null;
+                $data['branches'][$i]['manager_id'] = null;                
+            }
             $i++;
         }
         // $hi = $data['branches']->toArray()[0]['manager'][0]->name;

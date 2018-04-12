@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function(){
         Route::get('/root/home', 'ContentController@showHome')->name('root_home');
         Route::get('/add/branch', 'BranchController@showAddBranchForm')->name('add_branch_form');
         Route::post('/add/branch', 'BranchController@add')->name('add_branch');
+        Route::get('/edit/branch/{branch_id}', 'BranchController@showEditBranchForm')->name('edit_branch_form');
+        Route::post('/edit/branch', 'BranchController@editBranch')->name('edit_branch');
         Route::get('/branches', 'BranchController@show')->name('view_branches');
         Route::get('/branch/{branch_id}/add/manager', 'EmployeeController@addManagerForm')->name('show_add_manager_form');
         Route::get('/branch/{branch_id}/add/manager/{employee_id}', 'EmployeeController@addManager')->name('add_manager');

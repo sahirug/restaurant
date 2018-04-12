@@ -11,7 +11,7 @@ class Branch extends Model
     public $incrementing = false;
 
     public function employees(){
-        return $this->hasMany('App\Employee');
+        return $this->hasMany('App\Employee', 'branch_id');
     }
 
     public function employee(){

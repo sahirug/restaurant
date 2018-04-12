@@ -31,7 +31,7 @@ class Employee extends Authenticatable
     ];
 
     public function branch(){
-        return $this->belongsTo('App\Branch');
+        return $this->belongsTo('App\Branch', 'branch_id');
     }
 
     public function orders(){

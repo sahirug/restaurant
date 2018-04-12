@@ -40,7 +40,7 @@
                                 <td>
                                     <div class="btn-group">
                                         {{--  <button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>  --}}
-                                        <button type="button" class="btn btn-info" id="modal_launch" data-toggle="modal" data-target="#modal-info-{{ $branch['branch_id'] }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        <a href="{{ route('edit_branch_form', ['branch_id' => $branch['branch_id']]) }}" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <button type="button" class="btn btn-danger" id="modal_launch" data-toggle="modal" data-target="#modal-danger-{{ $branch['branch_id'] }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </div>
                                 </td>

@@ -72,4 +72,29 @@ class BranchController extends Controller
         return view('root.view_branches', $data);
     }
 
+    public function showEditBranchForm($branch_id){
+        $data['title'] = 'Edit Branch';
+        $data['desc'] = 'Please complete all fields';
+        $data['header'] = 'Edit Branch';
+        $data['active'] = 'view_branches';
+        $data['branch'] = $this->branch->find($branch_id);
+        if($data['branch'] == null ){
+            return dd('an error occurred');
+        }
+        return view('root.edit_branch', $data);
+    }
+
+    public function editBranch(Request $request){
+        $request->validate([
+            'location' => 'required|min:5',
+            'contact' => 'required|numeric',
+        ]);
+        $branch = $this->branch->find($request['branch_id']);
+        $branch->lat = $request['lat'];
+        $branch->lng = $request['lng'];
+        $branch->location = $request['location'];
+        $branch->save();
+        return redirect()->route('view_branches');
+    }
+
 }

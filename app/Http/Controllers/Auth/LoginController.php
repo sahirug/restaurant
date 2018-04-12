@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -43,6 +44,10 @@ class LoginController extends Controller
     }
 
     public function authenticated(Request $request, $user){
+        if($user->toArray()['status'] !== 'active'){
+            Auth::logout();
+            return redirect('/');
+        }
         $job = $user->toArray()['job'];
         $employee_id = $user->toArray()['employee_id'];
         $name = $user->toArray()['name'];

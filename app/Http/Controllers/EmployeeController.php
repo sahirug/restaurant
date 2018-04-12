@@ -24,7 +24,8 @@ class EmployeeController extends Controller
         $data['title'] = 'Add Manager';
         $data['active'] = 'view_branches';
         $data['location'] = $this->branch->where('branch_id', $branch_id)->pluck('location')->toArray()[0];
-        $data['employees'] = $this->employee->where('branch_id', $branch_id)->get();
+        // $data['employees'] = $this->employee->where('branch_id', $branch_id)->get();
+        $data['employees'] = $this->branch->find($branch_id)->employees->where('status', 'active');
         return view('root.add_manager_form', $data);
     }
 

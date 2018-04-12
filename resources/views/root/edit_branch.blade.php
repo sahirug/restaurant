@@ -6,7 +6,10 @@
         <!-- Box -->
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Branch Details</h3>
+                <h3 class="box-title">
+                    {{ $branch->location }} branch
+                    [Manager: {{ isset($manager_details) ? $manager_details[0]->name : '- Unset -' }} @if($manager_details !== null) <small><a href="{{ route('change_manager_form', ['branch_id' => $branch->branch_id]) }}">Change</a></small> @endif]
+                </h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>

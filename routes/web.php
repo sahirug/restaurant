@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function(){
         Route::get('/branches', 'BranchController@show')->name('view_branches');
         Route::get('/branch/{branch_id}/add/manager', 'EmployeeController@addManagerForm')->name('show_add_manager_form');
         Route::get('/branch/{branch_id}/add/manager/{employee_id}', 'EmployeeController@addManager')->name('add_manager');
+        Route::get('/branch/{branch_id}/edit/manager', 'BranchController@changeManagerForm')->name('change_manager_form');
+        Route::post('/branch/{branch_id}/edit/manager', 'BranchController@changeManager')->name('change_manager');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function(){

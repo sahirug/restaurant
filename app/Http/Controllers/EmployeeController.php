@@ -35,4 +35,21 @@ class EmployeeController extends Controller
         $employee->save();
         return redirect()->route('view_branches');
     }
+
+    public function show(){
+        $data['title'] = 'Employees';
+        $data['header'] = 'Employees';
+        $data['active'] = 'view_employees';
+        $data['location'] = $this->branch->find(session('branch_id'))->location;
+        $data['employees'] = $this->branch->find(session('branch_id'))->employees->where('status', 'active');
+        return view('manager.employees', $data);
+    }
+
+    public function addEmployeeForm(){
+        $data['title'] = 'Add Employee';
+        $data['header'] = 'Add Employee';
+        $data['desc'] = 'Please complete all fields';
+        $data['active'] = 'add_employee_form';
+        return view('manager.add_employee', $data);
+    }
 }

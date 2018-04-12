@@ -48,8 +48,11 @@ Route::middleware('auth')->group(function(){
 
     Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function(){
         Route::get('/manager/home', 'ContentController@showHome')->name('manager_home');
-        Route::get('/add/employee', 'EmployeeController@add')->name('add_employee');
+        Route::get('/employees', 'EmployeeController@show')->name('view_employees');
+        Route::get('/add/employee', 'EmployeeController@addEmployeeForm')->name('add_employee_form');
+        Route::post('/add/employee', 'EmployeeController@add')->name('add_employee');
         Route::get('/view/reports', 'ReportController@view')->name('view_reports');
+        Route::get('/menu', 'MealController@view')->name('view_menu');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\CashierMiddleware'], function(){
@@ -68,7 +71,7 @@ Route::get('/forbidden', function(){
 
 Route::get('/test', function(){
     return view('test');
-});
+})->name('test');
 
 Route::get('/test2', function(){
     return view('modal_test');

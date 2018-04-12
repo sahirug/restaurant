@@ -69,8 +69,9 @@ class LoginController extends Controller
         }else if( $job == 'Manager' ) {
             $sidebar_items = [
                 0 => ['Home', 'fa fa-home', 'manager_home'],
-                1 => ['Add Employee', 'fa fa-plus', 'add_employee'], 
-                2 => ['View Reports', 'fa fa-file', 'view_reports'] 
+                1 => ['Employees', 'fa fa-users', 'view_employees'], 
+                2 => ['Reports', 'fa fa-file', 'view_reports'], 
+                3 => ['Menu', 'fa fa-cutlery', 'view_menu'] 
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('manager_home');
@@ -80,12 +81,14 @@ class LoginController extends Controller
                 1 => ['Resupply', 'fa fa-plus', 'resupply'], 
                 2 => ['Use stock', 'fa fa-building', 'use_stock'] 
             ];
+            $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('stockmgr_home');
         }else if( $job == 'Cashier' ) {
             $sidebar_items = [
-                0 => ['Table', 'fa fa-cutlery'], 
-                1 => ['View Branches', 'fa fa-building'] 
+                0 => ['Table', 'fa fa-users', 'test'], 
+                1 => ['View Branches', 'fa fa-building', 'test'] 
             ];
+            $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('cashier_home');
         }
     }

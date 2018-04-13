@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="reset" class="form-control btn btn-info">
+                                <input type="reset" class="form-control btn btn-default">
                             </div>
                         </div>
                         <div class="col-md-6">

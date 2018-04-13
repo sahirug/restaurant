@@ -71,7 +71,7 @@ class LoginController extends Controller
                 0 => ['Home', 'fa fa-home', 'manager_home'],
                 1 => ['Employees', 'fa fa-users', 'view_employees'], 
                 2 => ['Reports', 'fa fa-file', 'view_reports'], 
-                3 => ['Menu', 'fa fa-cutlery', 'view_menu'] 
+                3 => ['Menu', 'fa fa-cutlery', 'view_meals'] 
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('manager_home');

@@ -36,9 +36,9 @@
                                         </tr>
                                     @endforeach
                                 @else
-                                        <tr>
-                                            <td colspan="3" style="text-align: center">No tables have been set for this branch</td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center">No tables have been set for this branch</td>
+                                    </tr>
                                 @endif
                             </tbody>
                           </table>

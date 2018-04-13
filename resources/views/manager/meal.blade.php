@@ -47,7 +47,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="3" style="text-align: center">No meal items have been set for this branch</td>
+                                        <td colspan="5" style="text-align: center">No meal items have been set for this branch</td>
                                     </tr>
                                 @endif
                             </tbody>

@@ -76,7 +76,11 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\StockMgrMiddleware'], function(){
-        Route::get('/stockmgr/home', 'ContentController@showHome')->name('stockmgr_home');
+        //home
+        Route::get('/stockmgr/home', 'ContentController@showHome')->name('stockMgr_home');
+        //stocks
+        Route::get('/stocks', 'StockController@view')->name('view_stocks');
+        Route::post('/stock/{stock_id}/{type}', 'StockController@edit')->name('change_stocks');
     });
     
 });

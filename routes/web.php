@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function(){
         Route::post('/add/employee', 'EmployeeController@add')->name('add_employee');
         Route::get('/view/reports', 'ReportController@view')->name('view_reports');
         Route::get('/menu', 'MealController@view')->name('view_menu');
+        Route::get('/add/table', 'TableController@add')->name('add_table');        
+        Route::get('/delete/table/{branch_id}/{table_id}', 'TableController@delete')->name('delete_table');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\CashierMiddleware'], function(){

@@ -13,14 +13,30 @@
                 </div>
             </div>
             <div class="box-body">
-                <form action="" method="POST">
+                <form action="{{ route('add_employee') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback {{ $errors->has('employee_id') ? 'has-error' : '' }}">
                                 <label>Employee ID</label>
-                                <input type="text" name="employee_id" id="employee_id" class="form-control" readonly value="####">
+                                <input type="text" name="employee_id" id="employee_id" class="form-control" readonly value="{{ $employee_id }}">
                                     @if($errors->has('employee_id'))
+                                        @foreach($errors->all() as $error)
+                                            <span class="help-block">{{ $error }}</span>
+                                        @endforeach
+                                    @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{ $errors->has('job') ? 'has-error' : '' }}">
+                                <label>Job</label>
+                                <select type="text" name="job" id="job" class="form-control" value="####">
+                                    <option value="1">Choose One</option>
+                                    <option value="Cashier" {{ old('job') == 'Cashier' ? 'selected' : '' }}>Cashier</option>
+                                    <option value="StockMgr" {{ old('job') == 'StockMgr' ? 'selected' : '' }}>Stock Manager</option>
+                                    <option>Rider</option>
+                                </select>
+                                    @if($errors->has('job'))
                                         @foreach($errors->all() as $error)
                                             <span class="help-block">{{ $error }}</span>
                                         @endforeach
@@ -30,14 +46,45 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group has-feedback {{ $errors->has('employee_id') ? 'has-error' : '' }}">
-                                <label>New designation for old manager</label>
-                                <input type="text" name="employee_id" id="employee_id" class="form-control" readonly value="####">
-                                    @if($errors->has('employee_id'))
+                            <div class="form-group has-feedback {{ $errors->has('employee_name') ? 'has-error' : '' }}">
+                                <label>Employee Name</label>
+                                <input type="text" name="employee_name" id="employee_name" class="form-control" placeholder="Employee Name" value="{{ old('employee_name') }}">
+                                    @if($errors->has('employee_name'))
                                         @foreach($errors->all() as $error)
                                             <span class="help-block">{{ $error }}</span>
                                         @endforeach
                                     @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+                                <label>Password</label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                                    @if($errors->has('password'))
+                                        @foreach($errors->all() as $error)
+                                            <span class="help-block">{{ $error }}</span>
+                                        @endforeach
+                                    @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                <label>Confirm Password</label>
+                                <input type="password" name="password_confirmation" id="password-confirm" class="form-control" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="reset" class="form-control btn btn-info">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="submit" class="form-control btn btn-success">
                             </div>
                         </div>
                     </div>

@@ -16,8 +16,21 @@ class EmployeeController extends Controller
         $this->employee = $employee;
     }
 
-    public function add(){
-        
+    public function add(Request $request){
+        $request->validate([
+            'job' => 'not_in:1',
+            'employee_name' => 'required',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        $employee = $this->employee;
+        $employee->employee_id = $request['employee_id'];
+        $employee->name = $request['employee_name'];
+        $employee->password = bcrypt($request['password']);
+        $employee->job = $request['job'];
+        $employee->branch_id = session('branch_id');
+        $employee->status = 'active';
+        $employee->save();
+        return redirect()->route('view_employees');
     }
 
     public function addManagerForm($branch_id){
@@ -50,6 +63,12 @@ class EmployeeController extends Controller
         $data['header'] = 'Add Employee';
         $data['desc'] = 'Please complete all fields';
         $data['active'] = 'add_employee_form';
+        $employee_id = '';
+        do{
+            $employee_id = 'EMP-'.session('branch_id').'-'.str_pad(rand(0, pow(10, 3)-1), 3, '0', STR_PAD_LEFT);
+            $employee = $this->employee->find($employee_id);
+        }while(sizeof($employee) != 0);
+        $data['employee_id'] = $employee_id;
         return view('manager.add_employee', $data);
     }
 }

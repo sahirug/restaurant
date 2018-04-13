@@ -33,4 +33,8 @@ class Branch extends Model
     public function manager(){
         return $this->belongsTo('App\Employee');
     }
+
+    public function tables(){
+        return $this->hasMany('App\Table', 'branch_id');
+    }
 }

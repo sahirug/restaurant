@@ -11,10 +11,10 @@ class Table extends Model
     public $incrementing = false;
 
     public function branch(){
-        return $this->belongsTo('App\Branch');
+        return $this->belongsTo('App\Branch', 'branch_id');
     }
 
     public function inhouseOrders(){
-        return $this->hasMany('App\InhouseOrder');
+        return $this->hasMany('App\InhouseOrder', 'order_id');
     }
 }

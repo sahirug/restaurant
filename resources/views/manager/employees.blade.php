@@ -33,8 +33,10 @@
                                         <td>{{ $employee->name }}</td>
                                         <td>{{ $employee->job }}</td>
                                         <td style="text-align:center">
-                                            <button type="button" class="btn btn-info" id="modal_launch" data-toggle="modal" data-target="#modal-warning-{{ $employee->employee_id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                            <button type="button" class="btn btn-danger" id="modal_launch" data-toggle="modal" data-target="#modal-warning-{{ $employee->employee_id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            @if($employee->employee_id !== session('employee_id'))
+                                                <button type="button" class="btn btn-info" id="modal_launch" data-toggle="modal" data-target="#modal-warning-{{ $employee->employee_id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                <button type="button" class="btn btn-danger" id="modal_launch" data-toggle="modal" data-target="#modal-warning-{{ $employee->employee_id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endif

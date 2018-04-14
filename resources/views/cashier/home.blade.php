@@ -33,7 +33,7 @@
                                                 <td>
                                                     {{--  <button type="button" class="btn btn-danger" id="modal_launch" data-toggle="modal" data-target="#modal-danger-{{ $table->table_id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>  --}}
                                                     <a class="btn btn-info" href="{{ route('edit_order_form', ['table_id' => $table->table_id]) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    <a class="btn btn-success" href="{{ route('add_order_form', ['table_id' => $table->table_id]) }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                    <a class="btn btn-primary" href="{{ route('invoice', ['table_id' => $table->table_id ]) }}"><i class="fa fa-usd" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

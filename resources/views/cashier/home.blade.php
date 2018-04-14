@@ -21,6 +21,24 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                                @if(isset($occupied_tables))
+                                    @foreach($occupied_tables as $table)
+                                            <tr style="text-align: center">
+                                                <td>
+                                                    <b>{{ $table->table_id }}</b>
+                                                </td>
+                                                <td>
+                                                    <span style="color: {{ $table->status == 'available' ? 'green' : 'red' }}">{{ ucwords($table->status) }}</span></td>
+                                                <td>
+                                                    {{--  <button type="button" class="btn btn-danger" id="modal_launch" data-toggle="modal" data-target="#modal-danger-{{ $table->table_id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>  --}}
+                                                    <a class="btn btn-info" href="{{ route('edit_order_form', ['table_id' => $table->table_id]) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    <a class="btn btn-success" href="{{ route('add_order_form', ['table_id' => $table->table_id]) }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                @endif
+
                                 @if(isset($tables))
                                     @foreach($tables as $table)
                                         <tr style="text-align: center">
@@ -92,7 +110,7 @@
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
-      'searching'   : false,
+      'searching'   : true,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false

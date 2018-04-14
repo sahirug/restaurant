@@ -77,6 +77,9 @@ Route::middleware('auth')->group(function(){
         //order
         Route::get('/add/order/{table_id}', 'OrderController@addOrderForm')->name('add_order_form');
         Route::post('/add/order/{table_id}', 'OrderController@add')->name('add_order');
+        Route::get('/edit/order/{table_id}', 'OrderController@editOrderForm')->name('edit_order_form');
+        Route::post('/edit/order/{order_id}/{table_id}', 'OrderController@editOrder')->name('edit_order');
+        
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\StockMgrMiddleware'], function(){

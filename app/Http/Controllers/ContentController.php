@@ -31,6 +31,8 @@ class ContentController extends Controller
                 return view('stockMgr.home', $data);
                 break;
             case 'Cashier': 
+                $data['tables'] = $this->getAvailableTables();
+                $data['active'] = 'tables';
                 return view('cashier.home', $data);
                 break;
         }
@@ -39,5 +41,10 @@ class ContentController extends Controller
     public function getTables(){
         $branch = $this->branch->find(session('branch_id'));
         return $branch->tables;
+    }
+
+    public function getAvailableTables(){
+        $branch = $this->branch->find(session('branch_id'));
+        return $branch->tables->where('status', 'available');
     }
 }

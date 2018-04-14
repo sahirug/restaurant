@@ -72,7 +72,11 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\CashierMiddleware'], function(){
-        Route::get('/cashier/home', 'ContentController@showHome')->name('cashier_home');
+        //home
+        Route::get('/cashier/home', 'ContentController@showHome')->name('tables');
+        //order
+        Route::get('/add/order/{table_id}', 'OrderController@addOrderForm')->name('add_order_form');
+        Route::post('/add/order/{table_id}', 'OrderController@add')->name('add_order');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\StockMgrMiddleware'], function(){
@@ -80,6 +84,8 @@ Route::middleware('auth')->group(function(){
         Route::get('/stockmgr/home', 'ContentController@showHome')->name('stockMgr_home');
         //stocks
         Route::get('/stocks', 'StockController@view')->name('view_stocks');
+        Route::get('add/stock', 'StockController@addStockForm')->name('add_stock_form');
+        Route::post('add/stock', 'StockController@add')->name('add_stock');
         Route::post('/stock/{stock_id}/{type}', 'StockController@edit')->name('change_stocks');
     });
     

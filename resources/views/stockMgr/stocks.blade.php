@@ -9,7 +9,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Current Stocks</h3>
                 <div class="box-tools pull-right">
-                    <a class="btn btn-success" href="#">Add New Stock</a>
+                    <a class="btn btn-success" href="{{ route('add_stock_form') }}">Add New Stock</a>
                 </div>
             </div>
             <div class="box-body">

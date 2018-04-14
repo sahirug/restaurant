@@ -84,11 +84,11 @@ class LoginController extends Controller
             return redirect()->route('stockMgr_home');
         }else if( $job == 'Cashier' ) {
             $sidebar_items = [
-                0 => ['Table', 'fa fa-users', 'test'], 
+                0 => ['Tables', 'fa fa-users', 'tables'], 
                 1 => ['View Branches', 'fa fa-building', 'test'] 
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
-            return redirect()->route('cashier_home');
+            return redirect()->route('tables');
         }
     }
 }

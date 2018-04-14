@@ -85,7 +85,7 @@ class LoginController extends Controller
         }else if( $job == 'Cashier' ) {
             $sidebar_items = [
                 0 => ['Tables', 'fa fa-users', 'tables'], 
-                1 => ['View Branches', 'fa fa-building', 'test'] 
+                1 => ['Phone Orders', 'fa fa-phone', 'view_phone_orders'] 
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('tables');

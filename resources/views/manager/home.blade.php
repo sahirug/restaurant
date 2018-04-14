@@ -17,8 +17,8 @@
                             <thead>
                             <tr>
                               <th>Table Number</th>
-                              <th>Browser</th>
-                              <th>Platform(s)</th>
+                              <th>Status</th>
+                              <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>

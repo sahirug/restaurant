@@ -95,10 +95,19 @@
         <!-- this row will not appear when printing -->
         <div class="row no-print">
           <div class="col-xs-12">
-            {{--  <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>  --}}
-            <a class="btn btn-success pull-right" href="{{ route('final_payment', ['order_id' => $order_id]) }}">
-                <i class="fa fa-credit-card"></i> Submit Payment and Print
-            </a>
+            @if(isset($delivery))
+              <a class="btn btn-success pull-right" href="#">
+                  <i class="fa fa-credit-card"></i> Print
+              </a>
+            @elseif(isset($takeaway))  
+              <a class="btn btn-success pull-right" href="{{ route('final_phone_payment', ['order_id' => $order_id]) }}">
+                  <i class="fa fa-credit-card"></i> Submit Payment and Print
+              </a>
+            @else  
+              <a class="btn btn-success pull-right" href="{{ route('final_payment', ['order_id' => $order_id]) }}">
+                  <i class="fa fa-credit-card"></i> Submit Payment and Print
+              </a>
+            @endif
           </div>
         </div>
       </section>

@@ -69,6 +69,10 @@ Route::middleware('auth')->group(function(){
         //tables
         Route::get('/add/table', 'TableController@add')->name('add_table');        
         Route::get('/delete/table/{branch_id}/{table_id}', 'TableController@delete')->name('delete_table');
+        //expenses
+        Route::get('/expenses', 'ExpenseController@show')->name('view_expenses');
+        Route::get('/add/expense', 'ExpenseController@addExpenseForm')->name('add_expense_form');
+        Route::post('/add/expense', 'ExpenseController@add')->name('add_expense');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\CashierMiddleware'], function(){

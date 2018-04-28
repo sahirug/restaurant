@@ -36,7 +36,7 @@ class BranchController extends Controller
         $branch->lng = $request['lng'];
         $branch->location = $request['location'];
         $branch->save();
-        return redirect()->route('view_branches');
+        return redirect()->route('add_new_manager_form', ['branch_id' => $request['branch_id']]);
     }
 
     public function show(){

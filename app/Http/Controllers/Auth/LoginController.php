@@ -60,9 +60,9 @@ class LoginController extends Controller
 
         if ( $job == 'Root' ) {
             $sidebar_items = [
-                0 => ['Home', 'fa fa-home', 'root_home'],
-                1 => ['Add Branch', 'fa fa-plus', 'add_branch_form'],
-                2 => ['View Branches', 'fa fa-building', 'view_branches'] 
+                // 0 => ['Home', 'fa fa-home', 'root_home'],
+                1 => ['View Branches', 'fa fa-building', 'view_branches'],
+                2 => ['Add Branch', 'fa fa-plus', 'add_branch_form'],                
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('root_home');

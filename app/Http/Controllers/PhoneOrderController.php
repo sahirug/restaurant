@@ -27,7 +27,7 @@ class PhoneOrderController extends Controller
         $data['meals'] = $this->meal->where('branch_id', session('branch_id'))->where('status', 'available')->get();
         if($type == 'delivery'){
             $data['delivery'] = 1;
-            $data['riders'] = $this->employee->where('job', 'Rider')->get();
+            $data['riders'] = $this->employee->where('job', 'Rider')->where('branch_id', session('branch_id'))->get();
         }        
         return view('cashier.add_phone_order', $data);
     }

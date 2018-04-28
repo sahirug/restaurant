@@ -30,14 +30,28 @@ class MealController extends Controller
     public function add(Request $request){
         $request->validate([
             'name' => 'required|string|min:5',
-            'unit_price' => 'required|numeric'
+            'unit_price' => 'required|numeric',
+            'type' => 'not_in:1',
+            'description' => 'max:190'
         ]);
+        $destination = 'C:\xampp\htdocs\meals';        
+        $picture = $request->picture;
+        if(count($picture) > 0){
+            $original_filename = $picture->hashName();
+            $flag = $picture->move($destination, $original_filename);
+            $destination =  'meals/' . $original_filename;
+        }else{
+            $destination = 'meals/no_image.png';
+        }
         $meal = $this->meal;
         $meal->meal_id = $request['meal_id'];
         $meal->name = $request['name'];
         $meal->unit_price = $request['unit_price'];
         $meal->status = 'available';
         $meal->branch_id = session('branch_id');
+        $meal->type = $request['type'];
+        $meal->description = $request['description'];
+        $meal->picture = $destination;
         $meal->save();
         return redirect()->route('view_meals');
     }
@@ -77,8 +91,19 @@ class MealController extends Controller
             'unit_price' => 'required|numeric'
         ]);
         $meal = $this->meal->where('meal_id', $request['meal_id'])->where('branch_id', session('branch_id'))->first();
+        $destination = 'C:\xampp\htdocs\meals';        
+        $picture = $request->picture;
+        if(count($picture) > 0){
+            $original_filename = $picture->hashName();
+            $flag = $picture->move($destination, $original_filename);
+            $destination =  'meals/' . $original_filename;
+            $meal->picture = $destination;   
+        }
+        $meal->meal_id = $request['meal_id'];
         $meal->name = $request['name'];
         $meal->unit_price = $request['unit_price'];
+        $meal->type = $request['type'];
+        $meal->description = $request['description'];
         $meal->save();
         return redirect()->route('view_meals');
     }

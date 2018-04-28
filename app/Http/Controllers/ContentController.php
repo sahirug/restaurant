@@ -20,7 +20,8 @@ class ContentController extends Controller
         $data['active'] = lcfirst(session('job')) . '_home';
         switch(session('job')){
             case 'Root':
-                return view('root.home', $data);
+                $data['active'] = lcfirst(session('job')) . '_home';            
+                return redirect()->route('view_branches');
                 break;
             case 'Manager':
                 $data['tables'] = $this->getTables();

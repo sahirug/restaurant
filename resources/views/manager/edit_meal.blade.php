@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <form action="{{ route('edit_meal') }}" method="POST">
+                <form action="{{ route('edit_meal') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -33,12 +33,48 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
                                 <label>Meal Name</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Meal Name" value="{{ old('name') == null ? $meal->name : old('name') }}" required>
                                 @if($errors->has('name'))
                                     <span class="help-block">{{ $errors->toArray()['name'][0] }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{ $errors->has('type') ? 'has-error' : '' }}">
+                                <label>Meal Type</label>
+                                <select class="form-control select2" style="width: 100%;" name="type" id="type">
+                                    <option selected="selected" value="1">Choose One</option>
+                                    <option value="breakfast" {{ $meal->type == 'breakfast' ? 'selected' : '' }}>Breakfast</option>
+                                    <option value="lunch" {{ $meal->type == 'lunch' ? 'selected' : '' }}>Lunch</option>
+                                    <option value="dinner" {{ $meal->type == 'dinner' ? 'selected' : '' }}>Dinner</option>
+                                </select>
+                                @if($errors->has('type'))
+                                    <span class="help-block">{{ $errors->toArray()['type'][0] }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback">
+                                <label for="exampleInputFile">Meal Picture</label>
+                                <img src="{{ $meal->picture !== '' ? 'http://localhost/'.$meal->picture : 'http://localhost/meals/no_image.png' }}" alt="..." class="margin" style="display: block; height: 100px; width: 150px;">                                                                
+                                <input type="file" class="form-control-file {{ $errors->has('picture') ? ' is-invalid' : '' }}" id="picture" name="picture" accept=".jpg, .png">
+                                @if($errors->has('picture'))
+                                    <span class="help-block">{{ $errors->toArray()['picture'][0] }}</span>
+                                @endif
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{ $errors->has('description') ? 'has-error' : '' }}">
+                                <label>Meal Description <small>optional</small> </label>
+                                <textarea class="form-control" rows="6" placeholder="Description" id="description" name="description">{{ $meal->description }}</textarea>
+                                @if($errors->has('description'))
+                                    <span class="help-block">{{ $errors->toArray()['description'][0] }}</span>
                                 @endif
                             </div>
                         </div>

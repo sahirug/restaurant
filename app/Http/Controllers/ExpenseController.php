@@ -42,7 +42,7 @@ class ExpenseController extends Controller
 
     public function show(){
         $data['title'] = 'Expenses';
-        $data['header'] = 'New Meal';
+        $data['header'] = 'View Expenses';
         $data['active'] = 'view_expenses';
         $data['expenses'] = $this->expense->where('branch_id', session('branch_id'))->get();
         return view('manager.view_expenses', $data);

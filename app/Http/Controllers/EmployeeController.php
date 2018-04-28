@@ -16,6 +16,32 @@ class EmployeeController extends Controller
         $this->employee = $employee;
     }
 
+    public function addNewManagerForm($branch_id){
+        $data['branch_id'] = $branch_id;
+        $data['employee_id'] = 'EMP-'.$branch_id.'-001';
+        $data['title'] = 'New Manager';
+        $data['header'] = 'Add Manager For '. $branch_id;
+        $data['desc'] = 'Please complete all fields';
+        $data['active'] = 'add_branch_form';
+        return view('root.add_branch_manager', $data);
+    }
+
+    public function addBranchManager(Request $request){
+        $request->validate([
+            'employee_name' => 'required',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        $employee = $this->employee;
+        $employee->employee_id = $request['employee_id'];
+        $employee->name = $request['employee_name'];
+        $employee->password = bcrypt($request['password']);
+        $employee->job = 'Manager';
+        $employee->branch_id = $request['branch_id'];
+        $employee->status = 'active';
+        $employee->save();
+        return redirect()->route('view_branches');
+    }
+
     public function add(Request $request){
         $request->validate([
             'job' => 'not_in:1',

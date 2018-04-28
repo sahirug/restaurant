@@ -13,34 +13,19 @@
                 </div>
             </div>
             <div class="box-body">
-                <form action="{{ route('add_employee') }}" method="POST">
+                <form action="#" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback {{ $errors->has('employee_id') ? 'has-error' : '' }}">
                                 <label>Employee ID</label>
                                 <input type="text" name="employee_id" id="employee_id" class="form-control" readonly value="{{ $employee_id }}">
-                                    @if($errors->has('employee_id'))
-                                        @foreach($errors->all() as $error)
-                                            <span class="help-block">{{ $error }}</span>
-                                        @endforeach
-                                    @endif
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group has-feedback {{ $errors->has('job') ? 'has-error' : '' }}">
-                                <label>Job</label>
-                                <select type="text" name="job" id="job" class="form-control" value="####">
-                                    <option value="1">Choose One</option>
-                                    <option value="Cashier" {{ old('job') == 'Cashier' ? 'selected' : '' }}>Cashier</option>
-                                    <option value="StockMgr" {{ old('job') == 'StockMgr' ? 'selected' : '' }}>Stock Manager</option>
-                                    <option>Rider</option>
-                                </select>
-                                    @if($errors->has('job'))
-                                        @foreach($errors->all() as $error)
-                                            <span class="help-block">{{ $error }}</span>
-                                        @endforeach
-                                    @endif
+                            <div class="form-group has-feedback">
+                                <label>Branch ID</label>
+                                <input type="text" name="branch_id" id="branch_id" class="form-control" readonly value="{{ $branch_id }}">
                             </div>
                         </div>
                     </div>

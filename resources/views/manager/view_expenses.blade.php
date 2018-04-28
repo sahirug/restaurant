@@ -7,7 +7,7 @@
         <!-- Box -->
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Tables</h3>
+                <h3 class="box-title">Expenses</h3>
                 <div class="box-tools pull-right">
                     <a class="btn btn-success" href="{{ route('add_expense_form') }}">Add Expense</a>
                 </div>

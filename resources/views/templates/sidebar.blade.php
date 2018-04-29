@@ -48,6 +48,14 @@
                     <li><a href="#">Link in level 2</a></li>
                 </ul>
             </li> --}}
+            {{-- <li>
+                <a href="#"><i class="fa fa-link"></i> 
+                    <span>Another Link</span>
+                    <span class="pull-right-container">
+                        <span class="label label-danger pull-right">1</span>
+                    </span>
+                </a>
+            </li> --}}
         </ul>
         <!-- /.sidebar-menu -->
     </section>

@@ -92,7 +92,10 @@ Route::middleware('auth')->group(function(){
         Route::get('/add/phone/order/{type}', 'PhoneOrderController@addPhoneOrderForm')->name('add_phone_order_form');
         Route::post('/add/phone/order', 'PhoneOrderController@add')->name('add_phone_order');
         Route::get('/phone/{order_id}/invoice', 'PhoneOrderController@invoice')->name('phone_order_invoice');
-        Route::get('/pay/phone/{order_id}', 'PhoneOrderController@pay')->name('final_phone_payment');        
+        Route::get('/pay/phone/{order_id}', 'PhoneOrderController@pay')->name('final_phone_payment'); 
+        //app order
+        Route::get('/app/orders', 'AppOrderController@show')->name('view_app_orders');    
+        Route::post('/rider/order/{order_id}', 'AppOrderController@assignRider')->name('assign_rider');    
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\StockMgrMiddleware'], function(){

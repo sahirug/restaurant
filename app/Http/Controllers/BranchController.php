@@ -150,5 +150,37 @@ class BranchController extends Controller
         return redirect()->route('view_branches');
     }
 
+    public function showBranchPicture(){
+        $branch = $this->branch;
+        $branch = $branch->find(session('branch_id'));
+        $data['title'] = 'Branch Picture';
+        $data['header'] = 'Branch Picture';
+        $data['active'] = 'show_branch_picture';
+        $data['picture'] = $branch->picture;        
+        $data['branch_id'] = session('branch_id');        
+        return view('manager.branch_picture', $data);
+    }
 
+    public function editPicture(Request $request){
+        $branch = $this->branch;
+        $branch = $branch->find(session('branch_id'));
+        $destination = 'C:\xampp\htdocs\branches';        
+        $picture = $request->picture;
+        if(count($picture) > 0){
+            $original_filename = $picture->hashName();
+            $flag = $picture->move($destination, $original_filename);
+            $destination =  'branches/' . $original_filename;
+            $branch->picture = $destination;   
+        }
+        $branch->save();
+        return redirect()->route('show_branch_picture');
+    }
+
+    public function clearPicture($branch_id){
+        $branch = $this->branch;
+        $branch = $branch->find($branch_id);
+        $branch->picture = 'branches/no_image.png';
+        $branch->save();
+        return redirect()->route('show_branch_picture');
+    }
 }

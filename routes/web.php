@@ -75,6 +75,10 @@ Route::middleware('auth')->group(function(){
         Route::get('/expenses', 'ExpenseController@show')->name('view_expenses');
         Route::get('/add/expense', 'ExpenseController@addExpenseForm')->name('add_expense_form');
         Route::post('/add/expense', 'ExpenseController@add')->name('add_expense');
+        //branch
+        Route::get('/branch/picture', 'BranchController@showBranchPicture')->name('show_branch_picture');
+        Route::post('/branch/edit/picture', 'BranchController@editPicture')->name('edit_picture');
+        Route::get('/clear/picture/branch/{branch_id}', 'BranchController@clearPicture')->name('clear_picture');
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\CashierMiddleware'], function(){

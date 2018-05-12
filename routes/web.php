@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function(){
         Route::post('/add/employee', 'EmployeeController@add')->name('add_employee');
         //reports
         Route::get('/view/reports', 'ReportController@view')->name('view_reports');
+        Route::post('/reports/{report_type}', 'ReportController@makeReport')->name('make_report');
         //meals
         Route::get('/meals', 'MealController@view')->name('view_meals');
         Route::get('/delete/meal/{branch_id}/{meal_id}', 'MealController@delete')->name('delete_meal');

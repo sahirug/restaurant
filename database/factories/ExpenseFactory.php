@@ -12,7 +12,7 @@ $factory->define(App\Expenses::class, function (Faker $faker) {
     $types = ['pettycash', 'stock resupply', 'water bill', 'electricity bill', 'misc tax'];
     return [
         'expense_id' => 'EXP-'. $branches[$random] . '-' . $faker->unique()->numerify('###'),
-        'expense_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'expense_date' => $faker->dateTimeThisYear($max = 'now'),
         'type' => $types[rand(0,4)],
         'notes' => $faker->sentence($nbWords = 3, $variableNbWords = true),
         'amount' => $faker->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 10000),

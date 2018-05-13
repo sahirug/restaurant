@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function(){
         //reports
         Route::get('/view/reports', 'ReportController@view')->name('view_reports');
         Route::post('/reports/{report_type}', 'ReportController@makeReport')->name('make_report');
+        //stats
+        Route::get('/branch/stats', 'GraphController@view')->name('view_graph_form');
         //meals
         Route::get('/meals', 'MealController@view')->name('view_meals');
         Route::get('/delete/meal/{branch_id}/{meal_id}', 'MealController@delete')->name('delete_meal');

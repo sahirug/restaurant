@@ -71,9 +71,10 @@ class LoginController extends Controller
                 0 => ['Home', 'fa fa-home', 'manager_home'],
                 1 => ['Employees', 'fa fa-users', 'view_employees'], 
                 2 => ['Reports', 'fa fa-file', 'view_reports'], 
-                3 => ['Menu', 'fa fa-cutlery', 'view_meals'],                 
-                4 => ['Expenses', 'fa fa-money', 'view_expenses'],               
-                5 => ['Branch Picture', 'fa fa-picture-o', 'show_branch_picture'],               
+                3 => ['Stats', 'fa fa-line-chart', 'view_graph_form'], 
+                4 => ['Menu', 'fa fa-cutlery', 'view_meals'],                 
+                5 => ['Expenses', 'fa fa-money', 'view_expenses'],               
+                6 => ['Branch Picture', 'fa fa-picture-o', 'show_branch_picture'],               
             ];
             $request->session()->put('sidebar_items', $sidebar_items);
             return redirect()->route('manager_home');
